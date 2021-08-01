@@ -1,9 +1,9 @@
-[]Include at least one has_many relationship <br />
-[]Include at least one belongs_to relationship <br />
-[]Include at least two has_many through relationships<br />
+[x]Include at least one has_many relationship <br />
+[x]Include at least one belongs_to relationship <br />
+[x]Include at least two has_many through relationships<br />
 []Include at least one many-to-many relationship<br />
-[]The "through" part of the has_many through includes at least one user  submittable attribute, that is to say, some attribute other than its foreign keys that can be submitted by the app's user <br />
-[]Include reasonable validations for simple model objects<br />
+[x]The "through" part of the has_many through includes at least one user  submittable attribute, that is to say, some attribute other than its foreign keys that can be submitted by the app's user <br />
+[x]Include reasonable validations for simple model objects<br />
 []Include a class level ActiveRecord scope method <br />
 []Include signup<br />
 []Include login<br />

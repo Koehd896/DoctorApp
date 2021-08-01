@@ -4,4 +4,6 @@ class Patient < ApplicationRecord
     has_many :doctors, through: :appointmenets
 
     has_secure_password
+
+    validates :name, presence: true
 end
