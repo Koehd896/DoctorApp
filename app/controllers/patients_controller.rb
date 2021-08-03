@@ -4,8 +4,21 @@ class PatientsController < ApplicationController
     end
 
     def create
-        @patient = Patient.create(patient_params)
-        redirect_to patient_path(@patient)
+        @patient = Patient.new(patient_params)
+        if @patient.save
+            session[:patient_id] = @patient.id
+            redirect_to patient_path(@patient)
+        else
+            render :new
+        end
+    end
+
+    def show
+        @patient = Patient.find(params[:id])
+    end
+
+    def login
+        @patient = Patient.new
     end
 
 

@@ -1,0 +1,7 @@
+<%= flash[:notice] if flash[:notice] %>
+
+<%= form_for @doctor, url: sessions_create_path, method: :post do |f| %>
+    <%= f.text_field :name %>
+    <%= f.password_field :password %>
+    <%= f.submit "Log In" %>
+<% end %>
