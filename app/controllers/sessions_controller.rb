@@ -2,7 +2,11 @@ class SessionsController < ApplicationController
     
     def create
         # byebug
-        if @patient = Patient.find_by(name: params[:patient][:name])
+        if params['provider']
+            @patient = Patient.find_or_create_by(name: auth_hash['info']['nickname'])
+            session[:patient_id] = @patient.id
+            redirect_to patient_path(@patient)
+        elsif @patient = Patient.find_by(name: params[:patient][:name])
             if @patient.authenticate(params[:patient][:password])
                 session[:patient_id] = @patient.id
                 redirect_to patient_path(@patient)
@@ -27,4 +31,11 @@ class SessionsController < ApplicationController
         session.delete :doctor_id
         redirect_to '/'
     end
+
+    protected
+
+    def auth_hash
+      request.env['omniauth.auth']
+    end
+
 end
