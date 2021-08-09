@@ -1,4 +1,12 @@
 class SessionsController < ApplicationController
+
+    def patient_login
+        @patient = Patient.new
+    end
+
+    def doctor_login
+        @doctor = Doctor.new
+    end
     
     def create
         # byebug

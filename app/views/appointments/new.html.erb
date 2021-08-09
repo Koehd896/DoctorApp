@@ -1,5 +1,6 @@
 <%= form_for @appointment do |f| %>
     <%= f.datetime_field :date %>
     <%= f.hidden_field :patient_id %>
+    <%= f.collection_select :doctor_id, Doctor.all, :id, :name %>
     <%= f.submit "Schedule Appointment" %>
 <% end %>
