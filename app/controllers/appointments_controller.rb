@@ -14,6 +14,13 @@ class AppointmentsController < ApplicationController
     end 
 
     def index
+        if params[:patient_id]
+            @appointments = Patient.find(params[:patient_id]).appointments
+        elsif params[:doctor_id]
+            @appointments = Doctor.find(params[:doctor_id])
+        else
+            return head(:forbidden)
+        end
     end
 
     def show

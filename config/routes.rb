@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :appointments
 
     resources :doctors, :patients
-    resources :patients do
+    resources :patients, :doctors do
         resources :appointments
     end
     post '/sessions/destroy', to: 'sessions#destroy'
