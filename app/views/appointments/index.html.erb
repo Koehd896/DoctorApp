@@ -1,3 +1,8 @@
+<%= form_tag(request.env['PATH_INFO'], method: :get) do %>
+    Filter: <%= select_tag "filter", raw("<option>Upcoming</option><option>Completed</option>") %> 
+    <%= submit_tag 'Select'%>
+<% end %>
+
 <% @appointments.each do |appointment| %>
     Appointment time:<%= appointment.date.strftime("%A, %B %-d at %k:%M") %><br>
     Doctor: <%= appointment.doctor.name %><br>

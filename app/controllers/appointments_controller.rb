@@ -15,7 +15,13 @@ class AppointmentsController < ApplicationController
 
     def index
         if params[:patient_id]
-            @appointments = Patient.find(params[:patient_id]).appointments
+            if params[:filter] == 'Upcoming'
+                @appointments = Patient.find(params[:patient_id]).appointments.upcoming
+            elsif params[:filter] == 'Completed'
+                @appointments = Patient.find(params[:patient_id]).appointments.completed
+            else
+                @appointments = Patient.find(params[:patient_id]).appointments
+            end
         elsif params[:doctor_id]
             @appointments = Doctor.find(params[:doctor_id])
         else
