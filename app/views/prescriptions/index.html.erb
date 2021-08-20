@@ -1,0 +1,7 @@
+<% @prescriptions.each do |prescription| %>
+    <div>
+        Doctor: <%= prescription.doctor.name %><br>
+        Patient: <%= prescription.patient.name %><br>
+        Medication: <%= prescription.medication.name %>
+    </div>
+<% end %>

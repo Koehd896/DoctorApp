@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
     end
     
     def create
-        # byebug
         if params['provider']
             @patient = Patient.find_or_create_by(name: auth_hash['info']['nickname'])
             session[:patient_id] = @patient.id
@@ -25,7 +24,7 @@ class SessionsController < ApplicationController
             end
         else
             @doctor = Doctor.find_by(name: params[:doctor][:name])
-            if @doctor.authenticate(params[:password])
+            if @doctor.authenticate(params[:doctor][:password])
                 session[:doctor_id] = @doctor.id
                 redirect_to doctor_path(@doctor)
             else

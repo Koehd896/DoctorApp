@@ -2,10 +2,11 @@ Rails.application.routes.draw do
     
     root 'static#home'
     resources :appointments
+    resources :prescriptions
 
     resources :doctors, :patients
     resources :patients, :doctors do
-        resources :appointments
+        resources :appointments, :prescriptions
     end
     post '/sessions/destroy', to: 'sessions#destroy'
     post '/sessions/create', to: 'sessions#create'

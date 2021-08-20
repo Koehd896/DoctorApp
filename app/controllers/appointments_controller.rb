@@ -23,7 +23,13 @@ class AppointmentsController < ApplicationController
                 @appointments = Patient.find(params[:patient_id]).appointments
             end
         elsif params[:doctor_id]
-            @appointments = Doctor.find(params[:doctor_id])
+            if params[:filter] == 'Upcoming'
+                @appointments = Doctor.find(params[:doctor_id]).appointments.upcoming
+            elsif params[:filter] == "Completed"
+                @appointments = Doctor.find(params[:doctor_id]).appointments.completed
+            else
+                @appointments = Doctor.find(params[:doctor_id]).appointments
+            end
         else
             return head(:forbidden)
         end

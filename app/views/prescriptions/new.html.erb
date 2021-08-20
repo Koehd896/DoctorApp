@@ -1,0 +1,6 @@
+<%= form_for @prescription do |f| %>
+    <%= f.hidden_field :doctor_id %>
+    <%= f.collection_select :patient_id, @prescription.doctor.patients, :id, :name %>
+    <%= f.collection_select :medication_id, Medication.all, :id, :name %>
+    <%= f.submit "Create Prescription" %>
+<% end %>

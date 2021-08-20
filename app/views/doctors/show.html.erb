@@ -1,2 +1,6 @@
 <%= @doctor.name %>
+<%= link_to 'Make An Appointment', new_doctor_appointment_path(@doctor) %>
+<%= link_to 'View Appointments', doctor_appointments_path(@doctor) %>
+<%= link_to 'Write a Prescription', new_doctor_prescription_path(@doctor) %>
 <%= link_to 'Log Out', sessions_destroy_path, method: 'post' %>
+<%= link_to 'View Prescriptions', doctor_prescriptions_path(@doctor) %>
