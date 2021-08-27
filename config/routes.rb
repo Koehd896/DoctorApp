@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
     
     root 'static#home'
-    resources :appointments
-    resources :prescriptions
 
-    resources :doctors, :patients
+    resources :doctors, :patients, :prescriptions, :appointments
+    resources :medications, only: [:index]
+    resources :patients, only: [:show] do
+        resources :medications, only: [:index]
+    end
+
     resources :patients, :doctors do
         resources :appointments, :prescriptions
     end
