@@ -18,6 +18,7 @@ class DoctorsController < ApplicationController
     end
 
     def show
+        # check that doctor is logged in
         @doctor = Doctor.find(params[:id])
     end
 

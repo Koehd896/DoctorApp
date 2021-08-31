@@ -14,6 +14,7 @@ class PatientsController < ApplicationController
     end
 
     def show
+        # check that patient is logged in
         @patient = Patient.find(params[:id])
     end
 

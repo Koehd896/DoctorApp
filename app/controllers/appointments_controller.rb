@@ -36,6 +36,7 @@ class AppointmentsController < ApplicationController
     end
 
     def show
+        # check that appointment belongs to current user 
         @appointment = Appointment.find(params[:id])
     end
 
