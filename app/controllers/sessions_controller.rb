@@ -10,9 +10,16 @@ class SessionsController < ApplicationController
     
     def create
         if params['provider']
-            @patient = Patient.find_or_create_by(name: auth_hash['info']['nickname'])
-            session[:patient_id] = @patient.id
-            redirect_to patient_path(@patient)
+            @patient = Patient.find_by(name: auth_hash['info']['nickname'])
+            if @patient
+                session[:patient_id] = @patient.id
+                redirect_to patient_path(@patient)
+            else @patient = Patient.new(name: auth_hash['info']['nickname'])
+                @patient.password = @patient.password_confirmation = SecureRandom.urlsafe_base64(n=6)
+                @patient.save
+                session[:patient_id] = @patient.id
+                redirect_to patient_path(@patient)
+            end
         elsif params[:patient]
             @patient = Patient.find_by(name: params[:patient][:name])
             if @patient.authenticate(params[:patient][:password])
