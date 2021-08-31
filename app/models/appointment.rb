@@ -4,7 +4,7 @@ class Appointment < ApplicationRecord
 
     validates :date, presence: true
 
-    scope :upcoming, -> { where("date > ?", "DateTime.now") }
-    scope :completed, -> { where("date < ?", "DateTime.now") }
+    scope :upcoming, -> { where("date > ?", DateTime.now) }
+    scope :completed, -> { where("date < ?", DateTime.now) }
 
 end
